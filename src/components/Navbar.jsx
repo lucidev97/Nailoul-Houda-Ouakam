@@ -34,7 +34,7 @@ const Navbar = () => {
    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-4' : 'bg-transparent py-4'}`}>
   <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
     <a href="#" className="no-underline font-serif text-4xl font-medium text-nailoul_vert sm:text-xl">
-      Nailoul Houda Ouakam
+      <img src="/nho/logo.png" alt="" className="w-18"/>
     </a>
 
     {/* Liens Desktop */}
