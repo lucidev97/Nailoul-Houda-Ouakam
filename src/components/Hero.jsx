@@ -15,10 +15,9 @@ export const Hero = () => {
         <div className="mx-auto max-w-[700px] mt-6 text-2xl ">
             <p className='text-center'>Découvrez la richesse de la traditition intélectuelle et spirituelle islamique à travers les enseignements, les textes et les savoirs des grands Érudits.</p>
         </div>
-        <div className="grid sm:grid-cols-1 space-y-4 md:grid-cols-2  mt-8 justify-center gap-x-2">
-            <button className='bg-nailoul_vert py-3 w-64 text-white rounded hover:bg-nailoul_marron'>Découvrir</button>
+        <div className="grid sm:grid-cols-1  md:grid-cols-2  mt-8 justify-center gap-x-2">
+            <button className='bg-nailoul_vert py-3 w-64 rounded text-white hover:bg-nailoul_marron'>Découvrir</button>
             <button className='bg-nailoul_sable py-3 w-64 rounded hover:bg-yellow-100'>Nos Enseignements</button>
-
         </div>
 
 
