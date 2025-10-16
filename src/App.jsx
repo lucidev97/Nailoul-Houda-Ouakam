@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar";
 import './App.css';
 import { Hero } from "./components/Hero";
-import { About } from "./components/about";
+import { About } from "./components/About";
 import { Erudits } from "./components/Erudits";
 import { Citation } from "./components/citation";
 import {Contact} from "./components/Contact";
