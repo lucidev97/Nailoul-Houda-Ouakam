@@ -3,7 +3,7 @@ import './App.css';
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
 import { Erudits } from "./components/Erudits";
-import { Citation } from "./components/citation";
+import { Citation } from "./components/Citation";
 import {Contact} from "./components/Contact";
 import Footer from "./components/Footer";
 import { Events } from "./components/Events";
