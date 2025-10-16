@@ -25,7 +25,7 @@ const Navbar = () => {
     { name: "Accueil", href: "#accueil" },
     { name: "À propos", href: "#a-propos" },
     { name: "Érudits", href: "#erudits" },
-    { name: "Textes & Enseignements", href: "#textes" },
+    // { name: "Textes & Enseignements", href: "#textes" },
     { name: "Événements", href: "#evenements" },
     { name: "Contact", href: "#contact" }
   ];

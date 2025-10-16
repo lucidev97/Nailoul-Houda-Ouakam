@@ -14,9 +14,12 @@
   --color-nailoul_marron: #8f8369;
   --color-nailoul_gris: #5e5e60;
   --color-nailoul_vert_fonce: #55896d;
+  --color-doree_claire: #f8ca53;
+    --color-doree_foncee: #b17921
 
     --font-montserrat: 'Montserrat', sans-serif;
 }
+
   
 body{
     font-family: var(--font-montserrat);

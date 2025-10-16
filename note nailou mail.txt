@@ -1,0 +1,178 @@
+Mailing nailou OPTION 1 — Utiliser EmailJS (solution la plus simple, sans backend)
+
+👉 Parfait si ton site est purement frontend (React) sans serveur Node.js.
+
+⚙️ Étapes
+1️⃣ Crée un compte sur https://www.emailjs.com
+2️⃣ Crée un service d’email (ex : Gmail)
+
+→ Va dans Email Services → Add New Service
+→ Sélectionne ton service (Gmail, Outlook, etc.)
+
+3️⃣ Crée un email template
+
+→ Va dans Email Templates
+→ Crée un modèle avec les champs :
+
+From: {{from_name}}
+Email: {{from_email}}
+Subject: {{subject}}
+Message: {{message}}
+
+4️⃣ Installe EmailJS dans ton projet React :
+npm install emailjs-com
+
+5️⃣ Modifie ton composant Contact.jsx :
+
+Voici la version prête à l’emploi 👇
+
+import { Mail, Phone, MapPin, MessageSquare } from 'lucide-react';
+import emailjs from 'emailjs-com';
+import { useState } from 'react';
+
+export const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  const [isSending, setIsSending] = useState(false);
+  const [success, setSuccess] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsSending(true);
+
+    emailjs
+      .send(
+        'YOUR_SERVICE_ID',       // ⚠️ Remplace par ton Service ID
+        'YOUR_TEMPLATE_ID',      // ⚠️ Remplace par ton Template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        'YOUR_PUBLIC_KEY'        // ⚠️ Remplace par ta Public Key
+      )
+      .then(
+        () => {
+          setSuccess(true);
+          setIsSending(false);
+          setFormData({ name: '', email: '', subject: '', message: '' });
+        },
+        (error) => {
+          console.error(error.text);
+          setSuccess(false);
+          setIsSending(false);
+        }
+      );
+  };
+
+  return (
+    <section id="contact" className="py-20 bg-nailoul-sable">
+      <div className="container mx-auto px-4 md:px-6 text-xl">
+        <h2 className="section-title text-center">Contactez-nous</h2>
+        <div className="w-16 h-1 bg-nailoul_sable mx-auto mb-10"></div>
+        <p className="section-content text-center mb-12">
+          Nous sommes à votre disposition pour répondre à vos questions.
+        </p>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
+          <div className="animate-slide-up">
+            <h3 className="section-subtitle">Envoyez-nous un message</h3>
+
+            <form onSubmit={sendEmail} className="space-y-6 mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    Nom
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-nailoul-teal outline-none transition"
+                    placeholder="Votre nom"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-nailoul-teal outline-none transition"
+                    placeholder="Votre email"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                  Sujet
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-nailoul-teal outline-none transition"
+                  placeholder="Sujet de votre message"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-nailoul-teal outline-none transition resize-none"
+                  placeholder="Votre message"
+                  required
+                ></textarea>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  disabled={isSending}
+                  className="bg-nailoul_sable w-full md:w-auto py-3 px-6 rounded-md text-white font-medium hover:bg-nailoul_marron transition"
+                >
+                  {isSending ? 'Envoi...' : 'Envoyer le message'}
+                </button>
+
+                {success === true && (
+                  <p className="text-green-600 mt-3">✅ Message envoyé avec succès !</p>
+                )}
+                {success === false && (
+                  <p className="text-red-600 mt-3">❌ Une erreur est survenue. Réessayez.</p>
+                )}
+              </div>
+            </form>
+          </div>
+
+          {/* La partie contact info reste inchangée */}
+        </div>
+      </div>
+    </section>
+  );
+};
